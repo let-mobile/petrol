@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\SignUpEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -17,7 +19,6 @@ class AuthController extends Controller
     public function index()
     {
         return view('login');
-
     }
 
     /**
@@ -28,7 +29,6 @@ class AuthController extends Controller
     public function create()
     {
         return view('register');
-
     }
 
     /**
@@ -51,7 +51,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect('dashboard');
         }
-        return back()->with('error','Login details are not valid');
+        return back()->with('error', 'Login details are not valid');
     }
 
     /**
@@ -92,16 +92,17 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
         ], [
             'name.required' => 'Name is',
-            'password.required' => 'Password is required' ]);
+            'password.required' => 'Password is required'
+        ]);
 
-            $user = User::create([
-                'name' =>  $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-                // $user->assignRole('user');
-                // Mail::to($request->email)->send(new RegisterUserMail($user));
-                return redirect('dashboard')->with('success','You are registered Successfully');
+        $user = User::create([
+            'name' =>  $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        Mail::to($request->email)->send(new \App\Mail\SignUpEmail($user));
+
+        return redirect('dashboard')->with('success', 'You are registered Successfully');
     }
 
     /**
