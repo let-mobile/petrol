@@ -39,16 +39,16 @@
                                 <?php $dt = Carbon\Carbon::parse($item->created_at); echo $dt->diffForHumans(); ?>
                             </td>
                             <td>
-                                <form method="POST" action="{{ url('leads/'. $item->id) }}" >
+                                <form method="POST" action="{{ url('roles'. $item->id) }}" >
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ url('leads/' . $item->id . '/edit') }}" class="btn btn-sm btn-primary">EDIT </a>
+                                    <a href="{{ url('roles/' . $item->id . '/edit') }}" class="btn btn-sm btn-primary">EDIT </a>
                                     <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete?')" type="submit">DELETE</button>
                                 </form>
                             </td>
                         </tr>
                     @empty
-                        
+
                     @endforelse
                 </tbody>
             </table>

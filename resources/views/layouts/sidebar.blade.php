@@ -51,7 +51,7 @@
 
                                     <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button"
-                                           href="">
+                                           href="{{url('roles')}}">
                                             <span class="sidebar-menu-text">Role</span>
                                         </a>
                                     </li>

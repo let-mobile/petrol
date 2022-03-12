@@ -73,8 +73,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::where('id',$id)->get();
-        return back();
+        $role = Role::where('id',$id)->first();
+        return view('role.edit',compact('role'));
     }
 
     /**
@@ -86,10 +86,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Role::find($id);
-        $role->name = $request->name;
-        $role->save();
-        return redirect('add_role');
+        try {
+            $request->validate([
+                'name' => 'required|min:3   '
+            ],[
+                'name.required' => 'The name field is required.',
+            ]);
+
+            $role = Role::find($id);
+            $role->name = $request->name;
+            $role->save();
+            return back()->with('success','Role updated Successfully.');
+        }
+        catch (\Exception $e) {
+            return back()->with(['error' => 'Unable to create some error occurred']);
+        }
+
+
     }
 
     /**
@@ -102,6 +115,6 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $role->delete();
-        return redirect('add_role');
+        return back();
     }
 }
