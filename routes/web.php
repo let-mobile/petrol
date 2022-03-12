@@ -16,12 +16,12 @@ Route::group(['prefix' => 'auth'], function(){
     Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
     Route::post('user/auth',[AuthController::class,'store']);
 });
-    Route::post('logout',[AuthController::class,'destroy'])->name('logout');
 
-    Route::get('/',[AuthController::class,'create'])->name('signup');
-    Route::post('user/register',[AuthController::class,'update']);
+Route::post('logout',[AuthController::class,'destroy'])->name('logout');
+Route::get('/',[AuthController::class,'create'])->name('signup');
+Route::post('user/register',[AuthController::class,'update']);
+
 //---------------------password-reset----------------------
-
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 //......... Role.......//

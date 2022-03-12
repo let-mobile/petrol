@@ -4,14 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Blog | Registration Page</title>
-
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
 </head>
 
@@ -20,7 +15,6 @@
     <div class="register-logo">
       <a href=""><b>My </b>Blog</a>
     </div>
-
     <div class="card">
       <div class="card-body register-card-body">
         <p class="login-box-msg">Register a new membership</p>
@@ -29,9 +23,8 @@
           {{ session()->get('success') }}
         </div>
         @endif
-        <form action="{{ url('user/register') }}" method="post">
+        <form action="{{ url('auth/user/register') }}" method="post">
           @csrf
-
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Full name" name="name">
             <div class="input-group-append">
@@ -82,8 +75,7 @@
             </div>
           </div>
         </form>
-
-        <a href="{{ url('login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ url('auth/login') }}" class="text-center">I already have a membership</a>
       </div>
     </div>
   </div>
