@@ -175,7 +175,7 @@
         <script src="{{ asset('assets_admin/vendor/jqvmap/jquery.vmap.min.js')}}"></script>
         <script src="{{ asset('assets_admin/vendor/jqvmap/maps/jquery.vmap.world.js')}}"></script>
         <script src="{{ asset('assets_admin/js/vector-maps.js')}}"></script>
-
+    
     </body>
 
 </html>
