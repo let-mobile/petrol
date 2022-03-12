@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('layouts.master')
 @section('content')
 <div class="container-fluid page__heading-container">
     <div class="page__heading d-flex align-items-end">

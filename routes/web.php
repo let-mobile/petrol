@@ -8,27 +8,24 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
 
 //---------------------signup/login------------------------
-Route::get('login',[AuthController::class,'index'])->name('login');
-Route::get('/',[AuthController::class,'create'])->name('signup');
-Route::post('user/register',[AuthController::class,'update']);
-Route::post('user/auth',[AuthController::class,'store']);
-Route::post('logout',[AuthController::class,'destroy'])->name('logout');
+Route::group(['prefix' => 'auth'], function(){
+    Route::get('login',[AuthController::class,'index'])->name('login');
+    Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+    Route::post('user/auth',[AuthController::class,'store']);
+});
+    Route::post('logout',[AuthController::class,'destroy'])->name('logout');
 
+    Route::get('/',[AuthController::class,'create'])->name('signup');
+    Route::post('user/register',[AuthController::class,'update']);
 //---------------------password-reset----------------------
-Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
-Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
-Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 //......... Role.......//
-
-Route::post('store',[RoleController::class,'store']);
-Route::get('add_role',[RoleController::class,'index'])->name('add_role');
-Route::get('delete/{id}',[RoleController::class,'destroy']);
-Route::get('edit/{id}',[RoleController::class,'edit']);
-Route::post('update/{id}',[RoleController::class,'update']);
+Route::resource('roles',App\Http\Controllers\RoleController::class);
 
 //.......User.......//
 Route::get('create_user',[UserController::class,'create'])->name('add_user');

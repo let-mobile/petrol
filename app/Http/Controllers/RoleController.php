@@ -14,8 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role = Role::get();
-        return view('admin.role.add_role',compact('role'));
+        $roles = Role::get();
+        return view('role.index',compact('roles'));
     }
 
     /**
@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('role.create');
     }
 
     /**
@@ -36,11 +36,22 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role;
-        $role->name = $request->name;
-        $role->guard_name = "web";
-        $role->save();
-        return redirect('add_role')->with('success','Blog Added Successfully.');
+        try {
+            $request->validate([
+                'name' => 'required|min:3|unique:roles,name'
+            ],[
+                'name.required' => 'The name field is required.',
+            ]);
+
+            $role = new Role;
+            $role->name = $request->name;
+            $role->guard_name = "web";
+            $role->save();
+            return back()->with('success','Role Added Successfully.');
+        }
+        catch (\Exception $e) {
+            return back()->with(['error' => 'Unable to create some error occurred']);
+        }
     }
 
     /**
