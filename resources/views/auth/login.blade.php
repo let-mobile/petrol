@@ -30,7 +30,7 @@
           {{ session()->get('error') }}
         </div>
         @endif
-        <form action="{{ url('user/auth') }}" method="post">
+        <form action="{{ url('auth/user/auth') }}" method="post">
           @csrf
          
           <div class="input-group mb-3">
@@ -65,7 +65,7 @@
           </div>
         </form>
         <p class="mb-1">
-          <a href="{{ route('forget.password.get') }}">I forgot my password</a>
+          <a href="{{ url('auth/forget.password.get') }}">I forgot my password</a>
         </p>
       </div>
     </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Middleware\Admin;
 
 //---------------------signup/login------------------------
 Route::group(['prefix' => 'auth'], function(){
@@ -24,8 +25,10 @@ Route::group(['prefix' => 'auth'], function(){
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 //......... Role.......//
-Route::resource('roles',App\Http\Controllers\RoleController::class);
+Route::middleware([Admin::class])->group(function(){
 
+Route::resource('roles',App\Http\Controllers\RoleController::class);
+});
 //.......User.......//
 Route::get('create_user',[UserController::class,'create'])->name('add_user');
 Route::post('store',[UserController::class,'store']);
