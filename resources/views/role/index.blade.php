@@ -39,7 +39,7 @@
                                 <?php $dt = Carbon\Carbon::parse($item->created_at); echo $dt->diffForHumans(); ?>
                             </td>
                             <td>
-                                <form method="POST" action="{{ url('roles'. $item->id) }}" >
+                                <form method="POST" action="{{ url('roles/'. $item->id) }}" >
                                     @csrf
                                     @method('DELETE')
                                     <a href="{{ url('roles/' . $item->id . '/edit') }}" class="btn btn-sm btn-primary">EDIT </a>

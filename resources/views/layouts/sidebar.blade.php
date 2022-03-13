@@ -59,7 +59,7 @@
 
                                     <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button"
-                                           href="{{route('add_user')}}">
+                                           href="{{url('users')}}">
                                             <span class="sidebar-menu-text">User</span>
                                         </a>
                                     </li>

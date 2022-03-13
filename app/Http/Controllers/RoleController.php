@@ -88,7 +88,7 @@ class RoleController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|min:3   '
+                'name' => 'required|min:3'
             ],[
                 'name.required' => 'The name field is required.',
             ]);
