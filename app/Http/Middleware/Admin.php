@@ -16,10 +16,13 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->name == 'admin') {
+        if(auth()->user()->isadmin == 1){
             return $next($request);
-        }
-        return back();
+          }
+          else{
+            return redirect('dashboard')->with('error','You have not admin access');
 
+          }
+            
     }
 }

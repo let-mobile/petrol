@@ -12,7 +12,7 @@
           </nav>
           <h1 class="m-0">Create</h1>
       </div>
-      <a href="" class="btn btn-info ml-3">All Roles</a>
+      <a href="{{ url('roles') }}" class="btn btn-info ml-3">All Roles</a>
   </div>
 </div>
 <div class="container-fluid page__container">

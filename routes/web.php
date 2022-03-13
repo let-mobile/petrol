@@ -25,10 +25,8 @@ Route::post('user/register',[AuthController::class,'update']);
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 //......... Role.......//
-Route::middleware([Admin::class])->group(function(){
+    Route::resource('roles',App\Http\Controllers\RoleController::class)->middleware('admin');
 
-Route::resource('roles',App\Http\Controllers\RoleController::class);
-});
 //.......User.......//
 Route::get('create_user',[UserController::class,'create'])->name('add_user');
 Route::post('store',[UserController::class,'store']);

@@ -100,7 +100,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        Mail::to($request->email)->send(new \App\Mail\SignUpEmail($user));
+       // Mail::to($request->email)->send(new \App\Mail\SignUpEmail($user));
 
         return redirect('dashboard')->with('success', 'You are registered Successfully');
     }
@@ -114,6 +114,6 @@ class AuthController extends Controller
     public function destroy()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('auth/login');
     }
 }
