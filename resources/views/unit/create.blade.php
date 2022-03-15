@@ -12,8 +12,7 @@
           </nav>
           <h1 class="m-0">Create</h1>
       </div>
-      {{-- <a href= "{{ route('all-units') }}" class="btn btn-info ml-3">All Units</a> --}}
-      <a href= "{{ route('units/create') }}" class="btn btn-info ml-3">All Units</a>
+      <a href= "{{ url('units') }}" class="btn btn-info ml-3">All Units</a>
 
   </div>
 </div>
@@ -24,7 +23,7 @@
           </div>
           <div class="col-lg-8 card-form__body card-body">
               @include('partials.alerts')
-              <form method="POST" id="validate-form" enctype="multipart/form-data" action="{{ route ('store_unit') }}">
+              <form method="POST" id="validate-form" enctype="multipart/form-data" action="{{ url ('units') }}">
                   @csrf
                   @if(session()->has('success'))
                   <div class="alert alert-success">

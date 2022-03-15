@@ -76,14 +76,15 @@ class UnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Unit $unit)
     {
         $this->validate(request(), [
             'name'=>'required'
            ]);
-        $unit = Unit::find($request->id);
+       
+        $unit->name = $request->name;
         $unit->save();
-        return back()->with('success', "Unit Updated Successfully");
+        return redirect('units');
     }
 
     /**

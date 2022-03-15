@@ -12,7 +12,7 @@
           </nav>
           <h1 class="m-0">Edit</h1>
       </div>
-      <a href= "{{ route('all-units') }}" class="btn btn-info ml-3">All Units</a>
+      <a href= "{{ url('units') }}" class="btn btn-info ml-3">All Units</a>
   </div>
 </div>
 <div class="container-fluid page__container">
@@ -22,8 +22,10 @@
           </div>
           <div class="col-lg-8 card-form__body card-body">
               @include('partials.alerts')
-              <form method="POST" id="validate-form" enctype="multipart/form-data" action="{{ url('unit/update/'.$unit->id) }}">
+              <form method="POST" id="validate-form" enctype="multipart/form-data" action="{{ url('units')}}/{{$unit->id }}">
                   @csrf
+                  @method('PUT')
+
                   @if(session()->has('success'))
                   <div class="alert alert-success">
                     {{ session()->get('success') }}

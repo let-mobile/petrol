@@ -12,9 +12,7 @@
             </nav>
             <h1 class="m-0">List</h1>
         </div>
-        {{-- <a href="{{ route('create_unit') }}" class="btn btn-success ml-3">Add Unit</a> --}}
-        <a href= "{{ route('units/create') }}" class="btn btn-info ml-3">All Units</a>
-
+        <a href= "{{ url('units/create') }}" class="btn btn-info ml-3">Add Units</a>
     </div>
 </div>
 <div class="container-fluid page__container">
@@ -38,9 +36,12 @@
                       <td> {{ $units->name ?? '' }} </td>
                       <td> {{ $units->created_at ?? '' }}</td>
                       <td>
-                        <a href="{{ url ('unit/edit/'.$units->id) }}"  class="btn btn-success">Edit</a>
-                        <a href="{{ url ('unit/destroy/'.$units->id) }}"  class="btn btn-danger">Delete</a>
-
+                        <form method="POST" action="{{ url('units/'. $units->id) }}" >
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ url('units/' . $units->id . '/edit') }}" class="btn btn-sm btn-primary">EDIT </a>
+                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete?')" type="submit">DELETE</button>
+                        </form>
                       </td>
                     </tr>
                     @endforeach
