@@ -7,12 +7,12 @@
               <ol class="breadcrumb mb-0">
                   <li class="breadcrumb-item"><a href="">Home</a></li>
                   <li class="breadcrumb-item active"
-                      aria-current="page">User Manager</li>
+                      aria-current="page">Role Manager</li>
               </ol>
           </nav>
           <h1 class="m-0">Create</h1>
       </div>
-      <a href="{{ url('roles') }}" class="btn btn-info ml-3">All Roles</a>
+      <a href="{{url('roles')}}" class="btn btn-info ml-3">All Roles</a>
   </div>
 </div>
 <div class="container-fluid page__container">
@@ -27,7 +27,7 @@
                   @method('POST')
                   <div class="col-12 col-md-10 mb-3">
                       <label for="name" class="required">Title</label>
-                      <input type="text" class="form-control" id="title" placeholder="Enter Payment Plan Title" name="name" value="{{old('title') ?? ''}}">
+                      <input type="text" class="form-control" id="name" placeholder="Enter Payment Plan Title" name="name" value="{{old('name') ?? ''}}">
                       <div class="invalid-feedback">Please provide title.</div>
                   </div>
                   <div class="col-12 col-md-10 mb-3">

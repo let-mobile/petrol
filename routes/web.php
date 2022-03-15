@@ -11,7 +11,7 @@ use App\Http\Middleware\Admin;
 Route::group(['prefix' => 'auth'], function(){
     Route::get('login',[AuthController::class,'index'])->name('login');
     Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
     Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
     Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
     Route::post('user/auth',[AuthController::class,'store']);
@@ -28,5 +28,4 @@ Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('roles',App\Http\Controllers\RoleController::class)->middleware('admin');
 
 //.......User.......//
-Route::get('create_user',[UserController::class,'create'])->name('add_user');
-Route::post('store',[UserController::class,'store']);
+Route::resource('users',App\Http\Controllers\UserController::class);

@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::get();
+        return view('user.index',compact('users'));
     }
 
     /**
@@ -37,13 +38,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new User;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->password = $request->password;
-        $data->save();
-        $data->assignRole($request->role);
-        return redirect('add_role');
     }
 
     /**
@@ -65,7 +59,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrfail($id);
+        $role = Role::get();
+        $user_role = array();
+        if(isset($user->roles))
+        {
+            foreach($user->roles as $_item)
+            {
+                $user_role[] = $_item->id;
+            }
+        }
+        return view('user.edit',compact('user','role','user_role'));
     }
 
     /**
@@ -75,9 +79,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        $user->syncRoles($request->roles);
+        return redirect('users');
     }
 
     /**
@@ -88,6 +97,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return back();
     }
 }
