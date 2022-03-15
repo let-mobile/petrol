@@ -1,78 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Blog | Log in</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MyBlog | Login </title>
+  <meta name="robots" content="noindex">
+  <link type="text/css" href="{{ asset('assets_admin/vendor/perfect-scrollbar.css')}}" rel="stylesheet">
+  <link type="text/css" href="{{ asset('assets_admin/css/app.css')}}" rel="stylesheet">
+  <link type="text/css" href="{{ asset('assets_admin/css/vendor-material-icons.css')}}" rel="stylesheet">
+  <link type="text/css" href="{{ asset('assets_admin/css/vendor-fontawesome-free.css')}}" rel="stylesheet">
 </head>
 
-<body class="hold-transition login-page">
-  <div class="login-box">
-    <div class="login-logo">
-      <a href=""><b>My</b>Blog</a>
+<body class="layout-login-centered-boxed">
+  <div class="layout-login-centered-boxed__form card">
+    <div class="d-flex flex-column justify-content-center align-items-center mt-2 mb-4 navbar-light">
+      <a href="javascript:;" class="navbar-brand flex-column mb-2 align-items-center mr-0" style="min-width: 0">
+        <span class="text-primary mr-2">
+          <img src="{{ asset('assets/images/41JkMnWHCKL.jpg') }}" style="width: 45%;margin-left:25%;" alt="avatar">
+        </span>
+      </a>
+      <p class="m-0">Login to access your Account </p>
     </div>
-    <div class="card">
-      <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
-        @if(session()->has('error'))
-        <div class="alert alert-danger">
-          {{ session()->get('error') }}
+    @if(Session::has('error'))
+    <div class="alert alert-danger">
+      {{ Session::get('error') }}
+      @php
+      Session::forget('error');
+      @endphp
+    </div>
+    @endif
+    @if(Session::has('warning'))
+    <div class="alert alert-warning">
+      {{ Session::get('warning') }}
+      @php
+      Session::forget('warning');
+      @endphp
+    </div>
+    @endif
+    <form action="{{ url('auth/user/auth') }}" method="post">
+      @csrf
+      <div class="form-group">
+        <label class="text-label" for="email_2" class="required">Email:</label>
+        <div class="input-group input-group-merge">
+          <input id="email_2" type="text" required="" name="email" class="form-control form-control-prepended" placeholder="john@doe.com">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <span class="far fa-envelope"></span>
+            </div>
+          </div>
         </div>
-        @endif
-        <form action="{{ url('user/auth') }}" method="post">
-          @csrf
-         
-          <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
-          </div>
-          @if ($errors->has('email'))
-          <span class="text-danger">{{ $errors->first('email') }}</span>
-          @endif
-         
-          <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-          </div>
-          @if ($errors->has('password'))
-          <span class="text-danger">{{ $errors->first('password') }}</span>
-          @endif
-          
-          <div class="row">
-            <div class="col-8"></div>
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-            </div>
-          </div>
-        </form>
-        <p class="mb-1">
-          <a href="{{ route('forget.password.get') }}">I forgot my password</a>
-        </p>
       </div>
-    </div>
+      <div class="form-group">
+        <label class="text-label" for="password_2" class="required">Password:</label>
+        <div class="input-group input-group-merge">
+          <input id="password_2" type="password" required="" name="password" class="form-control form-control-prepended" placeholder="Enter your password">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <span class="fa fa-key"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-block btn-primary" type="submit">Login</button>
+      </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" name="remember" value="1" class="custom-control-input" id="remember">
+          <label class="custom-control-label" for="remember">Remember me</label>
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <a href="{{ route('forget.password.get') }}">Forgot password?</a>
+      </div>
+    </form>
   </div>
-  <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
+  </div>
+  <script src="{{ asset('assets_admin/vendor/jquery.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/popper.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/perfect-scrollbar.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/dom-factory.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/material-design-kit.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/toggle-check-all.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/check-selected-row.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/dropdown.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/sidebar-mini.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/app.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/app-settings.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/flatpickr/flatpickr.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/flatpickr.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/settings.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/moment.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/moment-range.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/Chart.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/charts.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/chartjs-rounded-bar.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/page.dashboard.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/progress-charts.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/jqvmap/jquery.vmap.min.js')}}"></script>
+  <script src="{{ asset('assets_admin/vendor/jqvmap/maps/jquery.vmap.world.js')}}"></script>
+  <script src="{{ asset('assets_admin/js/vector-maps.js')}}"></script>
 </body>
 
 </html>
