@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -29,3 +31,24 @@ Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 //.......User.......//
 Route::resource('users',App\Http\Controllers\UserController::class);
+Route::get('create_user',[UserController::class,'create'])->name('add_user');
+Route::post('store',[UserController::class,'store']);
+
+//.......Unit.......//
+Route::get('create_unit',[UnitController::class,'create'])->name('create_unit');
+Route::get('all-units',[UnitController::class,'index'])->name('all-units');
+Route::post('store_unit',[UnitController::class,'store'])->name('store_unit');
+Route::get('unit/edit/{id}',[UnitController::class,'edit'])->name('unit/edit');
+Route::post('unit/update/{id}',[UnitController::class,'update'])->name('unit/update/{id}');
+Route::get('unit/destroy/{id}',[UnitController::class,'destroy'])->name('unit/destroy/{id}');
+
+
+
+
+
+
+
+
+
+
+>>>>>>> hamza-branch
