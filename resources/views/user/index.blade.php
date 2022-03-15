@@ -18,7 +18,6 @@
 <div class="container-fluid page__container">
     <div class="card">
         <div class="table-reponsive">
-            <div class="container table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -58,7 +57,6 @@
                     @endforelse
                 </tbody>
             </table>
-            </div>
         </div>
     </div>
 </div>

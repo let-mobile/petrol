@@ -21,11 +21,13 @@ Route::post('logout',[AuthController::class,'destroy'])->name('logout');
 Route::get('/',[AuthController::class,'create'])->name('signup');
 Route::post('user/register',[AuthController::class,'update']);
 
-//---------------------password-reset----------------------
-Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function(){
+    //---------------------Dashboard----------------------
+    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
-//......... Role.......//
-    Route::resource('roles',App\Http\Controllers\RoleController::class)->middleware('admin');
+    //......... Role.......//
+    Route::resource('roles',App\Http\Controllers\RoleController::class);
 
-//.......User.......//
-Route::resource('users',App\Http\Controllers\UserController::class);
+    //.......User.......//
+    Route::resource('users',App\Http\Controllers\UserController::class);
+});
