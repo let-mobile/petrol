@@ -84,7 +84,6 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-
         $user->syncRoles($request->roles);
         return redirect('users');
     }
