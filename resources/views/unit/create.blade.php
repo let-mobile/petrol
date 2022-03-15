@@ -12,7 +12,9 @@
           </nav>
           <h1 class="m-0">Create</h1>
       </div>
-      <a href= "{{ route('all-units') }}" class="btn btn-info ml-3">All Units</a>
+      {{-- <a href= "{{ route('all-units') }}" class="btn btn-info ml-3">All Units</a> --}}
+      <a href= "{{ route('units/create') }}" class="btn btn-info ml-3">All Units</a>
+
   </div>
 </div>
 <div class="container-fluid page__container">

@@ -12,7 +12,9 @@
             </nav>
             <h1 class="m-0">List</h1>
         </div>
-        <a href="{{ route('create_unit') }}" class="btn btn-success ml-3">Add Unit</a>
+        {{-- <a href="{{ route('create_unit') }}" class="btn btn-success ml-3">Add Unit</a> --}}
+        <a href= "{{ route('units/create') }}" class="btn btn-info ml-3">All Units</a>
+
     </div>
 </div>
 <div class="container-fluid page__container">
