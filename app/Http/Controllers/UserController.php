@@ -26,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $data = Role::get();
+        return view('user.add_user',compact('data'));
     }
 
     /**

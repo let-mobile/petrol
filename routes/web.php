@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Middleware\Admin;
 
 //---------------------signup/login------------------------
 Route::group(['prefix' => 'auth'], function(){
@@ -14,16 +16,16 @@ Route::group(['prefix' => 'auth'], function(){
     Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
     Route::post('user/auth',[AuthController::class,'store']);
 });
-    Route::post('logout',[AuthController::class,'destroy'])->name('logout');
 
-    Route::get('/',[AuthController::class,'create'])->name('signup');
-    Route::post('user/register',[AuthController::class,'update']);
+Route::post('logout',[AuthController::class,'destroy'])->name('logout');
+Route::get('/',[AuthController::class,'create'])->name('signup');
+Route::post('user/register',[AuthController::class,'update']);
+
 //---------------------password-reset----------------------
-
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
 //......... Role.......//
-Route::resource('roles',App\Http\Controllers\RoleController::class);
+    Route::resource('roles',App\Http\Controllers\RoleController::class)->middleware('admin');
 
 //.......User.......//
 Route::resource('users',App\Http\Controllers\UserController::class);
