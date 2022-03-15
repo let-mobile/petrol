@@ -36,12 +36,9 @@ Route::post('store',[UserController::class,'store']);
 Route::get('create_unit',[UnitController::class,'create'])->name('create_unit');
 Route::get('all-units',[UnitController::class,'index'])->name('all-units');
 Route::post('store_unit',[UnitController::class,'store'])->name('store_unit');
-
-
-Route::get('unit/edit/{id}',[UnitController::class,'edit'])->name('unit/edit/{id}');
+Route::get('unit/edit/{id}',[UnitController::class,'edit'])->name('unit/edit');
 Route::post('unit/update/{id}',[UnitController::class,'update'])->name('unit/update/{id}');
 Route::get('unit/destroy/{id}',[UnitController::class,'destroy'])->name('unit/destroy/{id}');
-
 
 
 
