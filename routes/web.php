@@ -17,13 +17,13 @@ Route::group(['prefix' => 'auth'], function(){
     Route::post('user/auth',[AuthController::class,'store']);
 });
 
-Route::post('logout',[AuthController::class,'destroy'])->name('logout');
-Route::get('/',[AuthController::class,'create'])->name('signup');
+Route::get('auth/register',[AuthController::class,'create'])->name('signup');
 Route::post('user/register',[AuthController::class,'update']);
 
 Route::group(['middleware' => 'auth'], function(){
+    Route::post('logout',[AuthController::class,'destroy'])->name('logout');
     //---------------------Dashboard----------------------
-    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
     //......... Role.......//
     Route::resource('roles',App\Http\Controllers\RoleController::class);

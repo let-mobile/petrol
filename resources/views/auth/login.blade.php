@@ -84,25 +84,7 @@
   <script src="{{ asset('assets_admin/vendor/perfect-scrollbar.min.js')}}"></script>
   <script src="{{ asset('assets_admin/vendor/dom-factory.js')}}"></script>
   <script src="{{ asset('assets_admin/vendor/material-design-kit.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/toggle-check-all.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/check-selected-row.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/dropdown.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/sidebar-mini.js')}}"></script>
   <script src="{{ asset('assets_admin/js/app.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/app-settings.js')}}"></script>
-  <script src="{{ asset('assets_admin/vendor/flatpickr/flatpickr.min.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/flatpickr.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/settings.js')}}"></script>
-  <script src="{{ asset('assets_admin/vendor/moment.min.js')}}"></script>
-  <script src="{{ asset('assets_admin/vendor/moment-range.js')}}"></script>
-  <script src="{{ asset('assets_admin/vendor/Chart.min.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/charts.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/chartjs-rounded-bar.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/page.dashboard.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/progress-charts.js')}}"></script>
-  <script src="{{ asset('assets_admin/vendor/jqvmap/jquery.vmap.min.js')}}"></script>
-  <script src="{{ asset('assets_admin/vendor/jqvmap/maps/jquery.vmap.world.js')}}"></script>
-  <script src="{{ asset('assets_admin/js/vector-maps.js')}}"></script>
 </body>
 
 </html>

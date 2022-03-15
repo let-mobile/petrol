@@ -49,7 +49,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect('dashboard');
+            return redirect('/');
         }
         return back()->with('error', 'Login details are not valid');
     }
